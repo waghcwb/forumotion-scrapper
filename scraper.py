@@ -14,7 +14,7 @@ class Forumotion(object):
 		self.login = Login()
 		self.version = '?change_version=prosilver&keep_theme=2'
 
-		userdata = self.login.check()
+		userdata = self.login.getPassword()
 
 def main():
 	forumotion = Forumotion()

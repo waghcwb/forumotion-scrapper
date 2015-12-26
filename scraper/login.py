@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import requests
 from os.path import isfile
 
 class Login(object):
@@ -10,7 +11,7 @@ class Login(object):
 	def isLogged(self):
 		return False
 
-	def check(self):
+	def getPassword(self):
 		filename = 'account.info'
 
 		if not isfile(filename):
