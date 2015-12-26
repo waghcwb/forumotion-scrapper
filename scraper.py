@@ -1,20 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from scraper import users
+from scraper.users import Users
+from scraper.login import Login
+
+import requests
 
 class Forumotion(object):
-    def __init__(self):
-        super(Forumotion, self).__init__()
+	def __init__(self):
+		super(Forumotion, self).__init__()
 
-        self.version = '?change_version=prosilver&keep_theme=2'
+		self.users = Users()
+		self.login = Login()
+		self.version = '?change_version=prosilver&keep_theme=2'
 
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+		userdata = self.login.check()
 
 def main():
-    forumotion = Forumotion()
+	forumotion = Forumotion()
 
 if __name__ == '__main__':
-    main()
+	main()
