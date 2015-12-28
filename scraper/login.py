@@ -15,13 +15,21 @@ class Login(object):
 		url = forum + '/login' + self.version
 
 		payload = {
-			username: username,
-			password: password
+			'username': username,
+			'password': password,
+			'autologin': 1,
+			'redirect': '',
+			'query': '',
+			'tt': 1
 		}
 
-		request = session.post(url, data=payload)
+		# request = session.post(url, data=payload)
 
-		print request.text
+		# print request.history
+		# print request.text
+		# print request.headers
+		# print request.cookies
+
 
 	def isValidURL(self, url):
 		try:
@@ -32,6 +40,7 @@ class Login(object):
 
 		except Exception, e:
 			raise e
+
 
 	def getPassword(self):
 		filename = 'account.info'
@@ -58,4 +67,11 @@ class Login(object):
 				username = content[1].split('username: ')[1]
 				password = content[2].split('password: ')[1]
 
-		return self.login(forum, username, password)
+		self.login(forum, username, password)
+
+		return {
+			'username': username,
+			'password': password,
+			'forum': forum,
+			'version': self.version
+		}
